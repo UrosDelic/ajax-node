@@ -10,12 +10,12 @@ const JSONobj = JSON.stringify(obj);
 
 
 function sendRequest() {
-    httpRequest.open("GET", "http://localhost:3000/");
-    httpRequest.onload = () => {
-        resolve(httpRequest.response);
-    }
+    httpRequest.open("POST", "http://localhost:3000/");
+    //httpRequest.onload = () => {
+    // resolve(httpRequest.response);
+    // }
     httpRequest.setRequestHeader("Content-type", "application/json");
-    httpRequest.send();
+    httpRequest.send(JSONobj);
 
 }
 
