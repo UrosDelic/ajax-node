@@ -1,7 +1,5 @@
 //const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 // require pripada nod-u ne moze da radi na DOM-u
-
-
 const httpRequest = new XMLHttpRequest();
 
 const obj = {
@@ -11,16 +9,18 @@ const obj = {
 const JSONobj = JSON.stringify(obj);
 
 
-function postData() {
-    httpRequest.open("POST", "http://localhost:3000/", true);
+function sendRequest() {
+    httpRequest.open("GET", "http://localhost:3000/");
+    httpRequest.onload = () => {
+        resolve(httpRequest.response);
+    }
     httpRequest.setRequestHeader("Content-type", "application/json");
-    httpRequest.send(JSONobj);
+    httpRequest.send();
+
 }
 
-
-
 const postButton = document.getElementById('post-button');
-postButton.addEventListener('click', onClick)
+postButton.addEventListener('click', sendRequest)
 
 function onClick() {
     alert('test');
