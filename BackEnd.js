@@ -2,7 +2,6 @@ const http = require("http");
 const fs = require("fs");
 
 const server = http.createServer((request, response) => {
-  // nasao sam na stack-u, za CORS
   if (request.method === "POST") {
     let data = [];
     request
@@ -12,10 +11,10 @@ const server = http.createServer((request, response) => {
       .on("end", () => {
         data = Buffer.concat(data).toString();
         console.log("data buffer", data);
-        fs.writeFile("message.txt", data, () => {});
+        fs.writeFile("message.json", data, () => {});
       });
   }
-
+  // nasao sam na stack-u, za CORS
   response.setHeader("Access-Control-Allow-Origin", "*");
   response.setHeader("Access-Control-Allow-Methods", "POST, GET");
   response.setHeader(

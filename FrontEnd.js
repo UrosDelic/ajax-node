@@ -1,8 +1,11 @@
 const httpRequest = new XMLHttpRequest();
 
 const obj = {
-  name: "uros",
-  age: 31,
+  vehicles: {
+    car: "limousine",
+    bike: "ktm-duke",
+    plane: "lufthansa",
+  },
 };
 const JSONobj = JSON.stringify(obj);
 
