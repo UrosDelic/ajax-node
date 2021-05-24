@@ -1,17 +1,30 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((request, response) => {
+  // nasao sam na stack-u, za CORS
+  if (request.method === "POST") {
+    let data = [];
+    request
+      .on("data", chunk => {
+        data.push(chunk);
+      })
+      .on("end", () => {
+        data = Buffer.concat(data).toString();
+        console.log("data buffer", data);
+        fs.writeFile("message.txt", data, () => {});
+      });
+  }
+
   response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST, GET, OPTIONS, PUT, DELETE"
-  );
+  response.setHeader("Access-Control-Allow-Methods", "POST, GET");
   response.setHeader(
     "Access-Control-Allow-Headers",
     "Content-Type, Accept"
   );
+
   response.writeHead(200, { "Content-type": "text/html" });
-  response.write("<h2>server is working</h2>");
+  response.write("This is the response from server!");
   response.end();
 });
 
