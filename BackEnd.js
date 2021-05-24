@@ -5,8 +5,8 @@ const server = http.createServer((request, response) => {
   if (request.method === "POST") {
     let data = [];
     request
-      .on("data", chunk => {
-        data.push(chunk);
+      .on("data", payload => {
+        data.push(payload);
       })
       .on("end", () => {
         data = Buffer.concat(data).toString();
@@ -16,7 +16,6 @@ const server = http.createServer((request, response) => {
   }
   // nasao sam na stack-u, za CORS
   response.setHeader("Access-Control-Allow-Origin", "*");
-  response.setHeader("Access-Control-Allow-Methods", "POST, GET");
   response.setHeader(
     "Access-Control-Allow-Headers",
     "Content-Type, Accept"
@@ -26,7 +25,6 @@ const server = http.createServer((request, response) => {
   response.write("This is the response from server!");
   response.end();
 });
-
 const host = "localhost";
 const port = 3000;
 
