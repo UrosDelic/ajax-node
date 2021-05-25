@@ -1,11 +1,11 @@
 const httpRequest = new XMLHttpRequest();
 
 const obj = {
-  vehicles: {
-    car: "OPET TEST",
-    bike: "OPET TEST",
-    plane: "OPET TEST",
-  },
+  car: "merc",
+  bike: "KTM",
+  plane: "AIRBUS",
+  meal: "PUNJENA",
+  desert: "TORTA",
 };
 const JSONobj = JSON.stringify(obj);
 
@@ -17,15 +17,21 @@ function postRequest() {
 
 function getRequest() {
   httpRequest.open("GET", "http://localhost:3000/");
+  // Do something with the retrieved data
   httpRequest.onload = () => {
-    const data = JSON.parse(httpRequest.response);
+    let data = JSON.parse(httpRequest.response);
+    console.log("data u onload", data);
+    for (let element in data) {
+    }
   };
-  // izvan onload mora biti - proveri
   httpRequest.send();
 }
-
+// NAPISI FUNCTION ZA KREIRANJE TABELE SA DATA IZ DOBIJENOG OBJEKTA I POZOVI JE U ONLOAD
+////
 const postButton = document.getElementById("post-button");
 postButton.addEventListener("click", postRequest);
 
 const getButton = document.getElementById("get-button");
 getButton.addEventListener("click", getRequest);
+
+//const textTag = document.getElementById("text-tag");
