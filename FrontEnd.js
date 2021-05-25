@@ -1,5 +1,11 @@
 const httpRequest = new XMLHttpRequest();
 
+const postButton = document.getElementById("post-button");
+postButton.addEventListener("click", postRequest);
+
+const getButton = document.getElementById("get-button");
+getButton.addEventListener("click", getRequest);
+
 const obj = {
   car: "merc",
   bike: "KTM",
@@ -21,17 +27,8 @@ function getRequest() {
   httpRequest.onload = () => {
     let data = JSON.parse(httpRequest.response);
     console.log("data u onload", data);
-    for (let element in data) {
-    }
   };
   httpRequest.send();
 }
 // NAPISI FUNCTION ZA KREIRANJE TABELE SA DATA IZ DOBIJENOG OBJEKTA I POZOVI JE U ONLOAD
 ////
-const postButton = document.getElementById("post-button");
-postButton.addEventListener("click", postRequest);
-
-const getButton = document.getElementById("get-button");
-getButton.addEventListener("click", getRequest);
-
-//const textTag = document.getElementById("text-tag");
